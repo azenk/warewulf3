@@ -26,7 +26,7 @@ if BUILD_X86_64
 		mkdir -p _work/$(IPXE_DIR)/src/bin-i386-pcbios ;\
 		cp "@local_ipxe_undionly_path@" _work/$(IPXE_DIR)/src/bin-i386-pcbios/undionly.kpxe ;\
 	else \
-		$(MAKE) -C _work/$(IPXE_DIR)/src CROSS_COMPILE=$(CROSS_COMPILE_X86_64) bin-i386-pcbios/undionly.kpxe; \
+		$(MAKE) EXTRAVERSION=".$(IPXE_VERSION)+" -C _work/$(IPXE_DIR)/src CROSS_COMPILE=$(CROSS_COMPILE_X86_64) bin-i386-pcbios/undionly.kpxe; \
 	fi
 endif
 
@@ -38,7 +38,7 @@ if BUILD_X86_64
 		mkdir -p _work/$(IPXE_DIR)/src/bin-x86_64-efi ;\
 		cp "@local_ipxe_snp_x86_64_path@" _work/$(IPXE_DIR)/src/bin-x86_64-efi/snp.efi ;\
 	else \
-		$(MAKE) -C _work/$(IPXE_DIR)/src CROSS_COMPILE=$(CROSS_COMPILE_X86_64) bin-x86_64-efi/snp.efi; \
+		$(MAKE) EXTRAVERSION=".$(IPXE_VERSION)+" -C _work/$(IPXE_DIR)/src CROSS_COMPILE=$(CROSS_COMPILE_X86_64) bin-x86_64-efi/snp.efi; \
 	fi
 endif
 
@@ -50,14 +50,14 @@ if BUILD_X86_64
 		mkdir -p _work/$(IPXE_DIR)/src/bin-i386-efi ;\
 		cp "@local_ipxe_snp_i386_path@" _work/$(IPXE_DIR)/src/bin-i386-efi/snp.efi ;\
 	else \
-		$(MAKE) -C _work/$(IPXE_DIR)/src CROSS_COMPILE=$(CROSS_COMPILE_X86_64) bin-i386-efi/snp.efi; \
+		$(MAKE) EXTRAVERSION=".$(IPXE_VERSION)+" -C _work/$(IPXE_DIR)/src CROSS_COMPILE=$(CROSS_COMPILE_X86_64) bin-i386-efi/snp.efi; \
 	fi
 endif
 
 bin-arm64-efi/snp.efi: prep
 
 if BUILD_ARM64
-	$(MAKE) -C _work/$(IPXE_DIR)/src CROSS_COMPILE=$(CROSS_COMPILE_ARM64) bin-arm64-efi/snp.efi
+	$(MAKE) EXTRAVERSION=".$(IPXE_VERSION)+" -C _work/$(IPXE_DIR)/src CROSS_COMPILE=$(CROSS_COMPILE_ARM64) bin-arm64-efi/snp.efi
 endif
 
 install-data-local: $(IPXETARGETS)
@@ -78,4 +78,4 @@ uninstall-local:
 	done
 
 clean-local:
-	rm -rf _work 
+	rm -rf _work
